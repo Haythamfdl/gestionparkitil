@@ -17,12 +17,12 @@ public class Solution {
 	private Long id_sol;
 	private String titre;
 	private String solution;
-	private Date date_soumission;
-	@OneToOne()
-	@JoinColumn(name = "id_probleme", referencedColumnName = "id_prob")
+	private Date datesoumission;
+	@ManyToOne()
+	@JoinColumn(name = "id_probleme")
 	private Probleme probleme;
-	@OneToOne()
-	@JoinColumn(name = "id_utilisateur", referencedColumnName = "id_user")
+	@ManyToOne()
+	@JoinColumn(name = "id_user")
 	private Utilisateur user;
 	private Boolean isdeleted;
 

@@ -33,7 +33,7 @@ public class EquipementController {
 	public List<Equipement> getEquipementAgents(@PathVariable(name = "id") Long id_agent) {
 		Agent agent = new Agent();
 		agent.setId_agent(id_agent);
-		return equipementRepo.findAllByAgent_affAndIsdeleted(agent,false);
+		return equipementRepo.findAllByAgentAndIsdeleted(agent,false);
 	}
 
 	@RequestMapping(value = "/equipement",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

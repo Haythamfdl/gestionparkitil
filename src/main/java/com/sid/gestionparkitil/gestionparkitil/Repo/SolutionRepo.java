@@ -10,6 +10,6 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface SolutionRepo extends JpaRepository<Solution, Long> {
-	public List<Solution> findAllByProblemeAndIsdeletedOrderbyDate_soumissionDesc(Probleme probleme, Boolean isdeleted);
-	public List<Solution> findAllByUtilisateurAndIsdeletedOrderbyDate_soumissionDesc(Utilisateur utilisateur, Boolean isdeleted);
+	public List<Solution> findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(Probleme probleme, Boolean isdeleted);
+	public List<Solution> findAllByUserAndIsdeletedOrderByDatesoumissionDesc(Utilisateur utilisateur, Boolean isdeleted);
 }

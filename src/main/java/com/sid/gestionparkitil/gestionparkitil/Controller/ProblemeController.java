@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -19,24 +20,24 @@ public class ProblemeController {
 
 	@GetMapping("/problems")
 	public List<Probleme> getAllProblemes() {
-		return problemeRepo.findAllByIsdeletedOrderbydAndDate_soumissionDesc(false);
+		return problemeRepo.findAllByIsdeletedOrderByDatesoumissionDesc(false);
 	}
 
 	@GetMapping("/problemsagent/{id}")
 	public List<Probleme> getAgentProblemes(@PathVariable(name = "id") Long id) {
 		Agent agent = new Agent();
 		agent.setId_agent(id);
-		return problemeRepo.findAllByAgentAndIsdeletedOrderbyDate_soumissionDesc(agent,false);
+		return problemeRepo.findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(agent,false);
 	}
 
 	@GetMapping("/problem/{id}")
-	public Probleme getProbleme(@PathVariable(name = "id") Long id) {
-		return problemeRepo.findById_prob(id);
+	public Optional<Probleme> getProbleme(@PathVariable(name = "id") Long id) {
+		return problemeRepo.findById(id);
 	}
 
 	@GetMapping("/problem/{res}")
 	public List<Probleme> getProblemesResolu(@PathVariable(name = "res") Boolean resolu) {
-		return problemeRepo.findAllByResoluAndIsdeletedOrderbyDate_soumissionDesc(resolu,false);
+		return problemeRepo.findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(resolu,false);
 	}
 
 	@RequestMapping(value = "/problem",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

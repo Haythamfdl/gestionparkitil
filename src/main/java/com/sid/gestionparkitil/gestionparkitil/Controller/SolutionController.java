@@ -23,14 +23,14 @@ public class SolutionController {
 	public List<Solution> getProblemeSolutions(Long id_probleme) {
 		Probleme probleme =new Probleme();
 		probleme.setId_prob(id_probleme);
-		return solutionRepo.findAllByProblemeAndIsdeletedOrderbyDate_soumissionDesc(probleme,false);
+		return solutionRepo.findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(probleme,false);
 	}
 
 	@GetMapping("/solutionsuser")
 	public List<Solution> getUserSolutions(Long id_user) {
 		Utilisateur utilisateur=new Utilisateur();
 		utilisateur.setId_user(id_user);
-		return solutionRepo.findAllByUtilisateurAndIsdeletedOrderbyDate_soumissionDesc(utilisateur,false);
+		return solutionRepo.findAllByUserAndIsdeletedOrderByDatesoumissionDesc(utilisateur,false);
 	}
 
 	@GetMapping("/solution/{id}")

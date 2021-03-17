@@ -17,15 +17,16 @@ public class Probleme {
 	private Long id_prob;
 	private String titre;
 	private String probleme;
-	private Date date_soumission;
-	@OneToOne()
-	@JoinColumn(name = "id_agent", referencedColumnName = "id_agent")
-	private Agent user;
+	private Date datesoumission;
+	@ManyToOne
+	@JoinColumn(name = "id_agent")
+	private Agent agent;
 	private String type;
 	private Boolean resolu;
 	@OneToOne()
-	@JoinColumn(name = "id_equipement", referencedColumnName = "id_equip")
+	@JoinColumn(name = "id_equip")
 	private Equipement equipement;
+
 	private Boolean isdeleted;
 
 }

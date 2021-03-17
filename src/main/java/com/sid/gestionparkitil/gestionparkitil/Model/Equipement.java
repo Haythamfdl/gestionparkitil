@@ -24,9 +24,9 @@ public class Equipement {
 	private Long duree_garantie;
 	private String poids;
 	private String taille;
-	@OneToOne()
-	@JoinColumn(name = "id_agent", referencedColumnName = "id_agent")
-	private Agent agent_aff;
+	@ManyToOne
+	@JoinColumn(name = "id_agent")
+	private Agent agent;
 	private Date date_affectation;
 	private Boolean isdeleted;
 
