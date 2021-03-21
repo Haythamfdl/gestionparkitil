@@ -14,18 +14,18 @@ import java.util.Date;
 public class Equipement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_equip;
+	private Long idequip;
 	private String numero;
 	private String designation;
 	private String fabriquant;
-	private Date date_aquisition;
-	private Date date_service;
+	private Date dateaquisition;
+	private Date dateservice;
 	private Float valeur_aquisition;
-	private Long duree_garantie;
+	private Long dureegarantie;
 	private String poids;
 	private String taille;
 	@ManyToOne
-	@JoinColumn(name = "id_agent")
+	@JoinColumn(name = "idagent")
 	private Agent agent;
 	private Date date_affectation;
 	private Boolean isdeleted;

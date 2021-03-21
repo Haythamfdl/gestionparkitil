@@ -14,15 +14,15 @@ import java.util.Date;
 public class Solution {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_sol;
+	private Long idsol;
 	private String titre;
 	private String solution;
 	private Date datesoumission;
 	@ManyToOne()
-	@JoinColumn(name = "id_probleme")
+	@JoinColumn(name = "idprobleme")
 	private Probleme probleme;
 	@ManyToOne()
-	@JoinColumn(name = "id_user")
+	@JoinColumn(name = "iduser")
 	private Utilisateur user;
 	private Boolean isdeleted;
 

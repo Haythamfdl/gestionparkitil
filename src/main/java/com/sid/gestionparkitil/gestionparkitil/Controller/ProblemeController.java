@@ -26,7 +26,7 @@ public class ProblemeController {
 	@GetMapping("/problemsagent/{id}")
 	public List<Probleme> getAgentProblemes(@PathVariable(name = "id") Long id) {
 		Agent agent = new Agent();
-		agent.setId_agent(id);
+		agent.setIdagent(id);
 		return problemeRepo.findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(agent,false);
 	}
 

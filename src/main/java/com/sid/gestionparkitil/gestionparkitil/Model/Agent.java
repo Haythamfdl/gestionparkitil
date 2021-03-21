@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Agent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_agent;
+	private Long idagent;
 	private String numero;
 	private String nom;
 	private String email;

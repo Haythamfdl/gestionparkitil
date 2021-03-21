@@ -14,17 +14,17 @@ import java.util.Date;
 public class Probleme {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_prob;
+	private Long idprob;
 	private String titre;
 	private String probleme;
 	private Date datesoumission;
 	@ManyToOne
-	@JoinColumn(name = "id_agent")
+	@JoinColumn(name = "idagent")
 	private Agent agent;
 	private String type;
 	private Boolean resolu;
 	@OneToOne()
-	@JoinColumn(name = "id_equip")
+	@JoinColumn(name = "idequip")
 	private Equipement equipement;
 
 	private Boolean isdeleted;

@@ -22,14 +22,14 @@ public class SolutionController {
 	@GetMapping("/solutions")
 	public List<Solution> getProblemeSolutions(Long id_probleme) {
 		Probleme probleme =new Probleme();
-		probleme.setId_prob(id_probleme);
+		probleme.setIdprob(id_probleme);
 		return solutionRepo.findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(probleme,false);
 	}
 
 	@GetMapping("/solutionsuser")
 	public List<Solution> getUserSolutions(Long id_user) {
 		Utilisateur utilisateur=new Utilisateur();
-		utilisateur.setId_user(id_user);
+		utilisateur.setIduser(id_user);
 		return solutionRepo.findAllByUserAndIsdeletedOrderByDatesoumissionDesc(utilisateur,false);
 	}
 

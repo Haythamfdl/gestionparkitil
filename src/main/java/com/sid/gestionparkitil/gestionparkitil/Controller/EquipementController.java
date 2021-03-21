@@ -32,7 +32,7 @@ public class EquipementController {
 	@GetMapping("/equipementsagent/{id}")
 	public List<Equipement> getEquipementAgents(@PathVariable(name = "id") Long id_agent) {
 		Agent agent = new Agent();
-		agent.setId_agent(id_agent);
+		agent.setIdagent(id_agent);
 		return equipementRepo.findAllByAgentAndIsdeleted(agent,false);
 	}
 

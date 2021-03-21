@@ -16,13 +16,13 @@ public class UtilisateurController {
 		this.utilisateurRepo = utilisateurRepo;
 	}
 
-	@GetMapping("/utilisateur/{email}")
+	@GetMapping("/utilisateurs/{email}")
 	public Utilisateur getUtilisateur(@PathVariable(name = "email") String email) {
 		return utilisateurRepo.findUtilisateurByEmailAndIsdeleted(email,false);
 	}
 
-	@GetMapping("/login/{email}/{pass}")
-	public Utilisateur login(@PathVariable(name = "email") String email,@PathVariable(name = "pass") String pass) {
+	@GetMapping("/utilisateurs/{email}/{pass}")
+	public Utilisateur login(@PathVariable String email, @PathVariable String pass) {
 		return utilisateurRepo.findUtilisateurByEmailAndPassAndIsdeleted(email,pass,false);
 	}
 

@@ -1,5 +1,6 @@
 package com.sid.gestionparkitil.gestionparkitil.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,13 @@ import java.util.Date;
 public class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_user;
+	private Long iduser;
 	private String nom;
 	private String email;
-	private String tel;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String pass;
-	private Date date_modif_pass;
+	private String tel;
+	private Date datemodifpass;
 	private Boolean isdeleted;
 
 }
