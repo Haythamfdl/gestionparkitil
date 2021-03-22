@@ -26,5 +26,4 @@ public class Utilisateur {
 	private String tel;
 	private Date datemodifpass;
 	private Boolean isdeleted;
-
 }

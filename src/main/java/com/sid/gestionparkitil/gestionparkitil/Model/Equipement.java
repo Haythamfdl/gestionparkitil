@@ -29,7 +29,4 @@ public class Equipement {
 	private Agent agent;
 	private Date date_affectation;
 	private Boolean isdeleted;
-
-
-
 }

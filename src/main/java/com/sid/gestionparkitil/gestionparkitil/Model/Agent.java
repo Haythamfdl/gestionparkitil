@@ -24,5 +24,4 @@ public class Agent {
 	private String departement;
 	private String fonction;
 	private Boolean isdeleted;
-
 }

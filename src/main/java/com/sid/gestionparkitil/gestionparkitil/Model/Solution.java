@@ -25,6 +25,4 @@ public class Solution {
 	@JoinColumn(name = "iduser")
 	private Utilisateur user;
 	private Boolean isdeleted;
-
-
 }
