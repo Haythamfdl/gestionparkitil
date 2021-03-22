@@ -26,7 +26,5 @@ public class Probleme {
 	@OneToOne()
 	@JoinColumn(name = "idequip")
 	private Equipement equipement;
-
 	private Boolean isdeleted;
-
 }
