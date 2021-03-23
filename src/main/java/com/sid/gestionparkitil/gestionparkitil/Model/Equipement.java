@@ -20,13 +20,13 @@ public class Equipement {
 	private String fabriquant;
 	private Date dateaquisition;
 	private Date dateservice;
-	private Float valeur_aquisition;
+	private Float valeuraquisition;
 	private Long dureegarantie;
 	private String poids;
 	private String taille;
 	@ManyToOne
 	@JoinColumn(name = "idagent")
 	private Agent agent;
-	private Date date_affectation;
+	private Date dateaffectation;
 	private Boolean isdeleted;
 }

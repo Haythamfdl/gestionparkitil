@@ -24,7 +24,7 @@ public class EquipementController {
 		return equipementRepo.findAllByIsdeleted(false);
 	}
 
-	@GetMapping("/equipement/{num}")
+	@GetMapping("/equipements/{num}")
 	public Equipement getEquipement(@PathVariable(name = "num") String numero) {
 		return equipementRepo.findByNumero(numero);
 	}
@@ -36,12 +36,12 @@ public class EquipementController {
 		return equipementRepo.findAllByAgentAndIsdeleted(agent,false);
 	}
 
-	@RequestMapping(value = "/equipement",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/equipements",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addEquipement(@RequestBody Equipement equipement) {
 		equipementRepo.save(equipement);
 	}
 
-	@RequestMapping(value = "/equipement",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/equipements",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateEquipement(@RequestBody Equipement equipement) {
 		equipementRepo.save(equipement);
 	}
