@@ -26,24 +26,24 @@ public class SolutionController {
 		return solutionRepo.findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(probleme,false);
 	}
 
-	@GetMapping("/solutionsuser")
+	@GetMapping("/solutionssuser")
 	public List<Solution> getUserSolutions(Long id_user) {
 		Utilisateur utilisateur=new Utilisateur();
 		utilisateur.setIduser(id_user);
 		return solutionRepo.findAllByUserAndIsdeletedOrderByDatesoumissionDesc(utilisateur,false);
 	}
 
-	@GetMapping("/solution/{id}")
+	@GetMapping("/solutions/{id}")
 	public Optional<Solution> getSolution(@PathVariable(name = "id") Long id) {
 		return solutionRepo.findById(id);
 	}
 
-	@RequestMapping(value = "/solution",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/solutions",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addSolution(@RequestBody Solution solution) {
 		solutionRepo.save(solution);
 	}
 
-	@RequestMapping(value = "/solution",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/solutions",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateSolution(@RequestBody Solution solution) {
 		solutionRepo.save(solution);
 	}

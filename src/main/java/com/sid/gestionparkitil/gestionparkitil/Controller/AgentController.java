@@ -22,17 +22,17 @@ public class AgentController {
 		return agentRepo.findAllByIsdeleted(false);
 	}
 
-	@GetMapping("/agent/{num}")
+	@GetMapping("/agents/{num}")
 	public Agent getAgent(@PathVariable(name = "num") String numero) {
 		return agentRepo.findByNumero(numero);
 	}
 
-	@RequestMapping(value = "/agent",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/agents",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addAgent(@RequestBody Agent agent) {
 		agentRepo.save(agent);
 	}
 
-	@RequestMapping(value = "/agent",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/agents",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateAgent(@RequestBody Agent agent) {
 		agentRepo.save(agent);
 	}

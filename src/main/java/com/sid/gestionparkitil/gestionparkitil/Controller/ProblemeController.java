@@ -23,29 +23,29 @@ public class ProblemeController {
 		return problemeRepo.findAllByIsdeletedOrderByDatesoumissionDesc(false);
 	}
 
-	@GetMapping("/problemsagent/{id}")
+	@GetMapping("/problesmsagent/{id}")
 	public List<Probleme> getAgentProblemes(@PathVariable(name = "id") Long id) {
 		Agent agent = new Agent();
 		agent.setIdagent(id);
 		return problemeRepo.findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(agent,false);
 	}
 
-	@GetMapping("/problem/{id}")
+	@GetMapping("/problems/{id}")
 	public Optional<Probleme> getProbleme(@PathVariable(name = "id") Long id) {
 		return problemeRepo.findById(id);
 	}
 
-	@GetMapping("/problem/{res}")
+	@GetMapping("/problems/{res}")
 	public List<Probleme> getProblemesResolu(@PathVariable(name = "res") Boolean resolu) {
 		return problemeRepo.findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(resolu,false);
 	}
 
-	@RequestMapping(value = "/problem",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/problems",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void addProbleme(@RequestBody Probleme probleme) {
 		problemeRepo.save(probleme);
 	}
 
-	@RequestMapping(value = "/problem",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/problems",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateProbleme(@RequestBody Probleme probleme) {
 		problemeRepo.save(probleme);
 	}
