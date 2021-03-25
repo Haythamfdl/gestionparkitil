@@ -1,11 +1,10 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
+import com.sid.gestionparkitil.gestionparkitil.Model.Solution;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.UtilisateurRepo;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -31,6 +30,11 @@ public class UtilisateurController {
 	@GetMapping("/utilisateurs/{email}/{pass}")
 	public Utilisateur login(@PathVariable String email, @PathVariable String pass) {
 		return utilisateurRepo.findUtilisateurByEmailAndPassAndIsdeleted(email,pass,false);
+	}
+
+	@RequestMapping(value = "/utilisateurs",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void updateUtilisateur(@RequestBody Utilisateur utilisateur) {
+		utilisateurRepo.save(utilisateur);
 	}
 
 }
