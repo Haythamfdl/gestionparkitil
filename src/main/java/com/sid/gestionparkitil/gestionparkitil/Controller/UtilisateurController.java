@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class UtilisateurController {
@@ -14,6 +16,11 @@ public class UtilisateurController {
 
 	public UtilisateurController(UtilisateurRepo utilisateurRepo) {
 		this.utilisateurRepo = utilisateurRepo;
+	}
+
+	@GetMapping("/utilisateurs/id/{id}")
+	public Optional<Utilisateur> getUtilisateur(@PathVariable(name = "id") Long id) {
+		return utilisateurRepo.findById(id);
 	}
 
 	@GetMapping("/utilisateurs/{email}")
