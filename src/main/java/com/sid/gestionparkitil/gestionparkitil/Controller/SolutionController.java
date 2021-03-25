@@ -19,15 +19,15 @@ public class SolutionController {
 		this.solutionRepo = solutionRepo;
 	}
 
-	@GetMapping("/solutions")
-	public List<Solution> getProblemeSolutions(Long id_probleme) {
+	@GetMapping("/solutions/problem/{id}")
+	public List<Solution> getProblemeSolutions(@PathVariable(name = "id") Long id_probleme) {
 		Probleme probleme =new Probleme();
 		probleme.setIdprob(id_probleme);
 		return solutionRepo.findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(probleme,false);
 	}
 
-	@GetMapping("/solutionssuser")
-	public List<Solution> getUserSolutions(Long id_user) {
+	@GetMapping("/solutions/user/{id}")
+	public List<Solution> getUserSolutions(@PathVariable(name = "id") Long id_user) {
 		Utilisateur utilisateur=new Utilisateur();
 		utilisateur.setIduser(id_user);
 		return solutionRepo.findAllByUserAndIsdeletedOrderByDatesoumissionDesc(utilisateur,false);

@@ -29,7 +29,7 @@ public class EquipementController {
 		return equipementRepo.findByNumero(numero);
 	}
 
-	@GetMapping("/equipementsagent/{id}")
+	@GetMapping("/equipements/agent/{id}")
 	public List<Equipement> getEquipementAgents(@PathVariable(name = "id") Long id_agent) {
 		Agent agent = new Agent();
 		agent.setIdagent(id_agent);
