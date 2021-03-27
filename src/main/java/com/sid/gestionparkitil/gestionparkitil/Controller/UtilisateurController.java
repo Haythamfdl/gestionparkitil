@@ -1,6 +1,5 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
-import com.sid.gestionparkitil.gestionparkitil.Model.Solution;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.UtilisateurRepo;
 import org.springframework.http.MediaType;
