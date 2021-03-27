@@ -14,7 +14,7 @@ import java.util.Date;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idamess;
+    private Long idmess;
     private String sujet;
     private String message;
     private Boolean ouvert;
