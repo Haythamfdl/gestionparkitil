@@ -13,37 +13,37 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class EquipementController {
 
-	private EquipementRepo equipementRepo;
+    private EquipementRepo equipementRepo;
 
-	public EquipementController(EquipementRepo equipementRepo) {
-		this.equipementRepo = equipementRepo;
-	}
+    public EquipementController(EquipementRepo equipementRepo) {
+        this.equipementRepo = equipementRepo;
+    }
 
-	@GetMapping("/equipements")
-	public List<Equipement> getAllEquipements() {
-		return equipementRepo.findAllByIsdeleted(false);
-	}
+    @GetMapping("/equipements")
+    public List<Equipement> getAllEquipements() {
+        return equipementRepo.findAllByIsdeleted(false);
+    }
 
-	@GetMapping("/equipements/{num}")
-	public Equipement getEquipement(@PathVariable(name = "num") String numero) {
-		return equipementRepo.findByNumero(numero);
-	}
+    @GetMapping("/equipements/{num}")
+    public Equipement getEquipement(@PathVariable(name = "num") String numero) {
+        return equipementRepo.findByNumero(numero);
+    }
 
-	@GetMapping("/equipements/agent/{id}")
-	public List<Equipement> getEquipementAgents(@PathVariable(name = "id") Long id_agent) {
-		Agent agent = new Agent();
-		agent.setIdagent(id_agent);
-		return equipementRepo.findAllByAgentAndIsdeleted(agent,false);
-	}
+    @GetMapping("/equipements/agent/{id}")
+    public List<Equipement> getEquipementAgents(@PathVariable(name = "id") Long id_agent) {
+        Agent agent = new Agent();
+        agent.setIdagent(id_agent);
+        return equipementRepo.findAllByAgentAndIsdeleted(agent, false);
+    }
 
-	@RequestMapping(value = "/equipements",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void addEquipement(@RequestBody Equipement equipement) {
-		equipementRepo.save(equipement);
-	}
+    @RequestMapping(value = "/equipements", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addEquipement(@RequestBody Equipement equipement) {
+        equipementRepo.save(equipement);
+    }
 
-	@RequestMapping(value = "/equipements",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateEquipement(@RequestBody Equipement equipement) {
-		equipementRepo.save(equipement);
-	}
+    @RequestMapping(value = "/equipements", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateEquipement(@RequestBody Equipement equipement) {
+        equipementRepo.save(equipement);
+    }
 
 }

@@ -12,19 +12,19 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Probleme {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idprob;
-	private String titre;
-	private String probleme;
-	private Date datesoumission;
-	@ManyToOne
-	@JoinColumn(name = "idagent")
-	private Agent agent;
-	private String type;
-	private Boolean resolu;
-	@OneToOne()
-	@JoinColumn(name = "idequip")
-	private Equipement equipement;
-	private Boolean isdeleted;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idprob;
+    private String titre;
+    private String probleme;
+    private Date datesoumission;
+    @ManyToOne
+    @JoinColumn(name = "idagent")
+    private Agent agent;
+    private String type;
+    private Boolean resolu;
+    @OneToOne()
+    @JoinColumn(name = "idequip")
+    private Equipement equipement;
+    private Boolean isdeleted;
 }

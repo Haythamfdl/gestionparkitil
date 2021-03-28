@@ -9,7 +9,9 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface ProblemeRepo extends JpaRepository<Probleme, Long> {
-	public List<Probleme> findAllByIsdeletedOrderByDatesoumissionDesc(Boolean isdeleted);
-	public List<Probleme> findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(Agent agent, Boolean isdeleted);
-	public List<Probleme> findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(Boolean resolu, Boolean isdeleted);
+    public List<Probleme> findAllByIsdeletedOrderByDatesoumissionDesc(Boolean isdeleted);
+
+    public List<Probleme> findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(Agent agent, Boolean isdeleted);
+
+    public List<Probleme> findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(Boolean resolu, Boolean isdeleted);
 }

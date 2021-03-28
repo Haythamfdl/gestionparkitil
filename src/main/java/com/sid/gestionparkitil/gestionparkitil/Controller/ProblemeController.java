@@ -12,42 +12,42 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*")
 public class ProblemeController {
-	private ProblemeRepo problemeRepo;
+    private ProblemeRepo problemeRepo;
 
-	public ProblemeController(ProblemeRepo problemeRepo) {
-		this.problemeRepo = problemeRepo;
-	}
+    public ProblemeController(ProblemeRepo problemeRepo) {
+        this.problemeRepo = problemeRepo;
+    }
 
-	@GetMapping("/problemes")
-	public List<Probleme> getAllProblemes() {
-		return problemeRepo.findAllByIsdeletedOrderByDatesoumissionDesc(false);
-	}
+    @GetMapping("/problemes")
+    public List<Probleme> getAllProblemes() {
+        return problemeRepo.findAllByIsdeletedOrderByDatesoumissionDesc(false);
+    }
 
-	@GetMapping("/problemes/agent/{id}")
-	public List<Probleme> getAgentProblemes(@PathVariable(name = "id") Long id) {
-		Agent agent = new Agent();
-		agent.setIdagent(id);
-		return problemeRepo.findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(agent,false);
-	}
+    @GetMapping("/problemes/agent/{id}")
+    public List<Probleme> getAgentProblemes(@PathVariable(name = "id") Long id) {
+        Agent agent = new Agent();
+        agent.setIdagent(id);
+        return problemeRepo.findAllByAgentAndIsdeletedOrderByDatesoumissionDesc(agent, false);
+    }
 
-	@GetMapping("/problemes/{id}")
-	public Optional<Probleme> getProbleme(@PathVariable(name = "id") Long id) {
-		return problemeRepo.findById(id);
-	}
+    @GetMapping("/problemes/{id}")
+    public Optional<Probleme> getProbleme(@PathVariable(name = "id") Long id) {
+        return problemeRepo.findById(id);
+    }
 
-	@GetMapping("/problemes/resolu/{res}")
-	public List<Probleme> getProblemesResolu(@PathVariable(name = "res") Boolean resolu) {
-		return problemeRepo.findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(resolu,false);
-	}
+    @GetMapping("/problemes/resolu/{res}")
+    public List<Probleme> getProblemesResolu(@PathVariable(name = "res") Boolean resolu) {
+        return problemeRepo.findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(resolu, false);
+    }
 
-	@RequestMapping(value = "/problemes",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void addProbleme(@RequestBody Probleme probleme) {
-		problemeRepo.save(probleme);
-	}
+    @RequestMapping(value = "/problemes", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void addProbleme(@RequestBody Probleme probleme) {
+        problemeRepo.save(probleme);
+    }
 
-	@RequestMapping(value = "/problemes",method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void updateProbleme(@RequestBody Probleme probleme) {
-		problemeRepo.save(probleme);
-	}
+    @RequestMapping(value = "/problemes", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateProbleme(@RequestBody Probleme probleme) {
+        problemeRepo.save(probleme);
+    }
 
 }

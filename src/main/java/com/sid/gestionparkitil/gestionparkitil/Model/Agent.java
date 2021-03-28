@@ -14,14 +14,14 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Agent {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idagent;
-	private String numero;
-	private String nom;
-	private String email;
-	private String tel;
-	private String departement;
-	private String fonction;
-	private Boolean isdeleted;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idagent;
+    private String numero;
+    private String nom;
+    private String email;
+    private String tel;
+    private String departement;
+    private String fonction;
+    private Boolean isdeleted;
 }

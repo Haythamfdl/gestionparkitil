@@ -16,14 +16,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Utilisateur {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long iduser;
-	private String nom;
-	private String email;
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	private String pass;
-	private String tel;
-	private Date datemodifpass;
-	private Boolean isdeleted;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long iduser;
+    private String nom;
+    private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String pass;
+    private String tel;
+    private Date datemodifpass;
+    private Boolean isdeleted;
 }
