@@ -20,16 +20,16 @@ public class SolutionController {
     }
 
     @GetMapping("/solutions/problem/{id}")
-    public List<Solution> getProblemeSolutions(@PathVariable(name = "id") Long id_probleme) {
+    public List<Solution> getProblemeSolutions(@PathVariable(name = "id") Long idprobleme) {
         Probleme probleme = new Probleme();
-        probleme.setIdprob(id_probleme);
+        probleme.setIdprob(idprobleme);
         return solutionRepo.findAllByProblemeAndIsdeletedOrderByDatesoumissionDesc(probleme, false);
     }
 
     @GetMapping("/solutions/user/{id}")
-    public List<Solution> getUserSolutions(@PathVariable(name = "id") Long id_user) {
+    public List<Solution> getUserSolutions(@PathVariable(name = "id") Long iduser) {
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setIduser(id_user);
+        utilisateur.setIduser(iduser);
         return solutionRepo.findAllByUserAndIsdeletedOrderByDatesoumissionDesc(utilisateur, false);
     }
 
@@ -38,12 +38,12 @@ public class SolutionController {
         return solutionRepo.findById(id);
     }
 
-    @RequestMapping(value = "/solutions", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addSolution(@RequestBody Solution solution) {
         solutionRepo.save(solution);
     }
 
-    @RequestMapping(value = "/solutions", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateSolution(@RequestBody Solution solution) {
         solutionRepo.save(solution);
     }

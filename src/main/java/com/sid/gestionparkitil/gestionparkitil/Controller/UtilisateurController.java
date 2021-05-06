@@ -31,7 +31,7 @@ public class UtilisateurController {
         return utilisateurRepo.findUtilisateurByEmailAndPassAndIsdeleted(email, pass, false);
     }
 
-    @RequestMapping(value = "/utilisateurs", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateUtilisateur(@RequestBody Utilisateur utilisateur) {
         utilisateurRepo.save(utilisateur);
     }

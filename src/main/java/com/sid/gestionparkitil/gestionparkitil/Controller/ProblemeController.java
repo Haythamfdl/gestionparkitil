@@ -40,12 +40,12 @@ public class ProblemeController {
         return problemeRepo.findAllByResoluAndIsdeletedOrderByDatesoumissionDesc(resolu, false);
     }
 
-    @RequestMapping(value = "/problemes", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addProbleme(@RequestBody Probleme probleme) {
         problemeRepo.save(probleme);
     }
 
-    @RequestMapping(value = "/problemes", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateProbleme(@RequestBody Probleme probleme) {
         problemeRepo.save(probleme);
     }

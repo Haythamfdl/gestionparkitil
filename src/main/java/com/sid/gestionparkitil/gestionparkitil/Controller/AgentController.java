@@ -27,12 +27,12 @@ public class AgentController {
         return agentRepo.findByNumero(numero);
     }
 
-    @RequestMapping(value = "/agents", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addAgent(@RequestBody Agent agent) {
         agentRepo.save(agent);
     }
 
-    @RequestMapping(value = "/agents", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateAgent(@RequestBody Agent agent) {
         agentRepo.save(agent);
     }

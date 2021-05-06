@@ -44,12 +44,12 @@ public class MessageController {
         return messageRepo.findAllByRecepteurAndOuvertAndIsdeletedOrderByDateenvoieDesc(utilisateur, ouv, false).stream().count();
     }
 
-    @RequestMapping(value = "/messages", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addMessage(@RequestBody Message message) {
         messageRepo.save(message);
     }
 
-    @RequestMapping(value = "/messages", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateMessage(@RequestBody Message message) {
         messageRepo.save(message);
     }
