@@ -1,5 +1,6 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
+import com.sid.gestionparkitil.gestionparkitil.Dto.UtilisateurDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.UtilisateurRepo;
 import org.springframework.http.MediaType;
@@ -32,7 +33,15 @@ public class UtilisateurController {
     }
 
     @PutMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateUtilisateur(@RequestBody Utilisateur utilisateur) {
+    public void updateUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setIduser(utilisateurdto.getIduser());
+        utilisateur.setNom(utilisateurdto.getNom());
+        utilisateur.setEmail(utilisateurdto.getEmail());
+        utilisateur.setPass(utilisateurdto.getPass());
+        utilisateur.setTel(utilisateurdto.getTel());
+        utilisateur.setDatemodifpass(utilisateurdto.getDatemodifpass());
+        utilisateur.setIsdeleted(utilisateurdto.getIsdeleted());
         utilisateurRepo.save(utilisateur);
     }
 

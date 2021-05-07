@@ -1,5 +1,6 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
+import com.sid.gestionparkitil.gestionparkitil.Dto.ProblemeDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Agent;
 import com.sid.gestionparkitil.gestionparkitil.Model.Probleme;
 import com.sid.gestionparkitil.gestionparkitil.Repo.ProblemeRepo;
@@ -41,13 +42,26 @@ public class ProblemeController {
     }
 
     @PostMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addProbleme(@RequestBody Probleme probleme) {
-        problemeRepo.save(probleme);
+    public void addProbleme(@RequestBody ProblemeDto problemedto) {
+        problemeRepo.save(attribut(problemedto));
     }
 
     @PutMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateProbleme(@RequestBody Probleme probleme) {
-        problemeRepo.save(probleme);
+    public void updateProbleme(@RequestBody ProblemeDto problemedto) {
+        problemeRepo.save(attribut(problemedto));
     }
 
+    private Probleme attribut(ProblemeDto problemedto){
+        Probleme probleme = new Probleme();
+        probleme.setIdprob(problemedto.getIdprob());
+        probleme.setTitre(problemedto.getTitre());
+        probleme.setProbleme(problemedto.getProbleme());
+        probleme.setDatesoumission(problemedto.getDatesoumission());
+        probleme.setAgent(problemedto.getAgent());
+        probleme.setType(problemedto.getType());
+        probleme.setResolu(problemedto.getResolu());
+        probleme.setEquipement(problemedto.getEquipement());
+        probleme.setIsdeleted(problemedto.getIsdeleted());
+        return probleme;
+    }
 }

@@ -1,6 +1,8 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
 
+import com.sid.gestionparkitil.gestionparkitil.Dto.AgentDto;
+import com.sid.gestionparkitil.gestionparkitil.Dto.EquipementDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Agent;
 import com.sid.gestionparkitil.gestionparkitil.Model.Equipement;
 import com.sid.gestionparkitil.gestionparkitil.Repo.EquipementRepo;
@@ -37,13 +39,31 @@ public class EquipementController {
     }
 
     @PostMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addEquipement(@RequestBody Equipement equipement) {
-        equipementRepo.save(equipement);
+    public void addEquipement(@RequestBody EquipementDto equipementdto) {
+        equipementRepo.save(attribut(equipementdto));
     }
 
     @PutMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateEquipement(@RequestBody Equipement equipement) {
-        equipementRepo.save(equipement);
+    public void updateEquipement(@RequestBody EquipementDto equipementdto) {
+        equipementRepo.save(attribut(equipementdto));
     }
 
+    //Permet d'attribuer les valeurs de l'objet Dto a l'objet Entité
+    private Equipement attribut(EquipementDto equipementdto){
+        Equipement equipement = new Equipement();
+        equipement.setIdequip(equipementdto.getIdequip());
+        equipement.setNumero(equipementdto.getNumero());
+        equipement.setDesignation(equipementdto.getDesignation());
+        equipement.setFabriquant(equipementdto.getFabriquant());
+        equipement.setDateaquisition(equipementdto.getDateaquisition());
+        equipement.setDateservice(equipementdto.getDateservice());
+        equipement.setValeuraquisition(equipementdto.getValeuraquisition());
+        equipement.setDureegarantie(equipementdto.getDureegarantie());
+        equipement.setPoids(equipementdto.getPoids());
+        equipement.setTaille(equipementdto.getTaille());
+        equipement.setAgent(equipementdto.getAgent());
+        equipement.setDateaffectation(equipementdto.getDateaffectation());
+        equipement.setIsdeleted(equipementdto.getIsdeleted());
+        return equipement;
+    }
 }

@@ -1,5 +1,6 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
+import com.sid.gestionparkitil.gestionparkitil.Dto.MessageDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Message;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.MessageRepo;
@@ -45,12 +46,26 @@ public class MessageController {
     }
 
     @PostMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addMessage(@RequestBody Message message) {
-        messageRepo.save(message);
+    public void addMessage(@RequestBody MessageDto messagedto) {
+        messageRepo.save(attribut(messagedto));
     }
 
     @PutMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateMessage(@RequestBody Message message) {
-        messageRepo.save(message);
+    public void updateMessage(@RequestBody MessageDto messagedto) {
+        messageRepo.save(attribut(messagedto));
+    }
+
+    //Permet d'attribuer les valeurs de l'objet Dto a l'objet Entité
+    private Message attribut(MessageDto messagedto){
+        Message message = new Message();
+        message.setIdmess(messagedto.getIdmess());
+        message.setSujet(messagedto.getSujet());
+        message.setMessage(messagedto.getMessage());
+        message.setOuvert(messagedto.getOuvert());
+        message.setEnvoyeur(messagedto.getEnvoyeur());
+        message.setRecepteur(messagedto.getRecepteur());
+        message.setDateenvoie(messagedto.getDateenvoie());
+        message.setIsdeleted(messagedto.getIsdeleted());
+        return message;
     }
 }

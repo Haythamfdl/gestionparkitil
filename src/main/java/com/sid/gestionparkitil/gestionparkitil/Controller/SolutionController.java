@@ -1,5 +1,6 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
+import com.sid.gestionparkitil.gestionparkitil.Dto.SolutionDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Probleme;
 import com.sid.gestionparkitil.gestionparkitil.Model.Solution;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
@@ -39,13 +40,24 @@ public class SolutionController {
     }
 
     @PostMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addSolution(@RequestBody Solution solution) {
-        solutionRepo.save(solution);
+    public void addSolution(@RequestBody SolutionDto solutiondto) {
+        solutionRepo.save(attribut(solutiondto));
     }
 
     @PutMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateSolution(@RequestBody Solution solution) {
-        solutionRepo.save(solution);
+    public void updateSolution(@RequestBody SolutionDto solutiondto) {
+        solutionRepo.save(attribut(solutiondto));
     }
 
+    private Solution attribut(SolutionDto solutiondto){
+        Solution solution = new Solution();
+        solution.setIdsol(solutiondto.getIdsol());
+        solution.setTitre(solutiondto.getTitre());
+        solution.setSolution(solutiondto.getSolution());
+        solution.setDatesoumission(solutiondto.getDatesoumission());
+        solution.setProbleme(solutiondto.getProbleme());
+        solution.setUser(solutiondto.getUser());
+        solution.setIsdeleted(solutiondto.getIsdeleted());
+        return solution;
+    }
 }
