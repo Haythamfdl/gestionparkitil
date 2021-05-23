@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -25,5 +23,11 @@ public class Utilisateur {
     private String pass;
     private String tel;
     private Date datemodifpass;
+    @ManyToMany
+    @JoinTable(
+            name = "permission_accorde",
+            joinColumns = @JoinColumn(name = "iduser"),
+            inverseJoinColumns = @JoinColumn(name = "idpermission"))
+    private Set<Permission> permissions;
     private Boolean isdeleted;
 }

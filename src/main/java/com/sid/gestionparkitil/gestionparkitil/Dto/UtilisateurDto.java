@@ -1,7 +1,10 @@
 package com.sid.gestionparkitil.gestionparkitil.Dto;
 
 
+import com.sid.gestionparkitil.gestionparkitil.Model.Permission;
+
 import java.util.Date;
+import java.util.Set;
 
 public class UtilisateurDto {
     private Long iduser;
@@ -10,6 +13,7 @@ public class UtilisateurDto {
     private String pass;
     private String tel;
     private Date datemodifpass;
+    private Set<Permission> permissions;
     private Boolean isdeleted;
 
     public Long getIduser() {
@@ -58,6 +62,14 @@ public class UtilisateurDto {
 
     public void setDatemodifpass(Date datemodifpass) {
         this.datemodifpass = datemodifpass;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     public Boolean getIsdeleted() {

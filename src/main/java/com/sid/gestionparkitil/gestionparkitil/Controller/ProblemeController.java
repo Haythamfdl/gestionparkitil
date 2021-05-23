@@ -4,6 +4,7 @@ import com.sid.gestionparkitil.gestionparkitil.Dto.ProblemeDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Agent;
 import com.sid.gestionparkitil.gestionparkitil.Model.Probleme;
 import com.sid.gestionparkitil.gestionparkitil.Repo.ProblemeRepo;
+import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class ProblemeController {
     private ProblemeRepo problemeRepo;
+    private Probleme probleme = new Probleme();
 
     public ProblemeController(ProblemeRepo problemeRepo) {
         this.problemeRepo = problemeRepo;
@@ -43,25 +45,11 @@ public class ProblemeController {
 
     @PostMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addProbleme(@RequestBody ProblemeDto problemedto) {
-        problemeRepo.save(attribut(problemedto));
+        problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
     }
 
     @PutMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateProbleme(@RequestBody ProblemeDto problemedto) {
-        problemeRepo.save(attribut(problemedto));
-    }
-
-    private Probleme attribut(ProblemeDto problemedto){
-        Probleme probleme = new Probleme();
-        probleme.setIdprob(problemedto.getIdprob());
-        probleme.setTitre(problemedto.getTitre());
-        probleme.setProbleme(problemedto.getProbleme());
-        probleme.setDatesoumission(problemedto.getDatesoumission());
-        probleme.setAgent(problemedto.getAgent());
-        probleme.setType(problemedto.getType());
-        probleme.setResolu(problemedto.getResolu());
-        probleme.setEquipement(problemedto.getEquipement());
-        probleme.setIsdeleted(problemedto.getIsdeleted());
-        return probleme;
+        problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
     }
 }

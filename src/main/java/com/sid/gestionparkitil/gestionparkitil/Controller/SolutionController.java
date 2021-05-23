@@ -5,6 +5,7 @@ import com.sid.gestionparkitil.gestionparkitil.Model.Probleme;
 import com.sid.gestionparkitil.gestionparkitil.Model.Solution;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.SolutionRepo;
+import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class SolutionController {
     private SolutionRepo solutionRepo;
+    private Solution solution = new Solution();
 
     public SolutionController(SolutionRepo solutionRepo) {
         this.solutionRepo = solutionRepo;
@@ -41,23 +43,11 @@ public class SolutionController {
 
     @PostMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addSolution(@RequestBody SolutionDto solutiondto) {
-        solutionRepo.save(attribut(solutiondto));
+        solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));
     }
 
     @PutMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateSolution(@RequestBody SolutionDto solutiondto) {
-        solutionRepo.save(attribut(solutiondto));
-    }
-
-    private Solution attribut(SolutionDto solutiondto){
-        Solution solution = new Solution();
-        solution.setIdsol(solutiondto.getIdsol());
-        solution.setTitre(solutiondto.getTitre());
-        solution.setSolution(solutiondto.getSolution());
-        solution.setDatesoumission(solutiondto.getDatesoumission());
-        solution.setProbleme(solutiondto.getProbleme());
-        solution.setUser(solutiondto.getUser());
-        solution.setIsdeleted(solutiondto.getIsdeleted());
-        return solution;
+        solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));
     }
 }

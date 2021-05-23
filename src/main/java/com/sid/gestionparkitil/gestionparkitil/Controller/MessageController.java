@@ -4,6 +4,7 @@ import com.sid.gestionparkitil.gestionparkitil.Dto.MessageDto;
 import com.sid.gestionparkitil.gestionparkitil.Model.Message;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.MessageRepo;
+import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class MessageController {
     private MessageRepo messageRepo;
+    private Message message = new Message();
 
     public MessageController(MessageRepo messageRepo) {
         this.messageRepo = messageRepo;
@@ -47,25 +49,11 @@ public class MessageController {
 
     @PostMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addMessage(@RequestBody MessageDto messagedto) {
-        messageRepo.save(attribut(messagedto));
+        messageRepo.save(FromDtoToEntity.attribut(messagedto, message));
     }
 
     @PutMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateMessage(@RequestBody MessageDto messagedto) {
-        messageRepo.save(attribut(messagedto));
-    }
-
-    //Permet d'attribuer les valeurs de l'objet Dto a l'objet Entité
-    private Message attribut(MessageDto messagedto){
-        Message message = new Message();
-        message.setIdmess(messagedto.getIdmess());
-        message.setSujet(messagedto.getSujet());
-        message.setMessage(messagedto.getMessage());
-        message.setOuvert(messagedto.getOuvert());
-        message.setEnvoyeur(messagedto.getEnvoyeur());
-        message.setRecepteur(messagedto.getRecepteur());
-        message.setDateenvoie(messagedto.getDateenvoie());
-        message.setIsdeleted(messagedto.getIsdeleted());
-        return message;
+        messageRepo.save(FromDtoToEntity.attribut(messagedto, message));
     }
 }
