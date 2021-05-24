@@ -1,12 +1,9 @@
 package com.sid.gestionparkitil.gestionparkitil.Controller;
 
-import com.sid.gestionparkitil.gestionparkitil.Dto.AgentDto;
 import com.sid.gestionparkitil.gestionparkitil.Dto.UtilisateurDto;
-import com.sid.gestionparkitil.gestionparkitil.Model.Agent;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.UtilisateurRepo;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
