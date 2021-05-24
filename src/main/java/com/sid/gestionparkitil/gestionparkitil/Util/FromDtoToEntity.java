@@ -7,7 +7,7 @@ public class FromDtoToEntity {
     private FromDtoToEntity() {
     }
 
-    public static <T> T attribut(Object dto, Object entity){
+    public static <T> T attribut(Object dto, Object entity) {
         BeanUtils.copyProperties(dto, entity);
         return (T) entity;
     }
