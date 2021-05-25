@@ -8,4 +8,5 @@ public interface AccountService {
     Utilisateur addNewUser(Utilisateur appUser);
     Utilisateur loadUserByUsername(String email);
     List<Utilisateur> listUsers();
+    Utilisateur getUser(String email, String pass);
 }

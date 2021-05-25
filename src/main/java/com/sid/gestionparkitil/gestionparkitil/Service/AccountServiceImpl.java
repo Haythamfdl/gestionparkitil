@@ -30,4 +30,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Utilisateur> listUsers() {
         return appUserRepo.findAll();
     }
+
+    public Utilisateur getUser(String email, String pass) {
+        System.out.println(email);
+        System.out.println(passwordEncoder.encode(pass));
+        return appUserRepo.findUtilisateurByEmailAndPassAndIsdeleted(email, passwordEncoder.encode(pass), false);
+    }
 }

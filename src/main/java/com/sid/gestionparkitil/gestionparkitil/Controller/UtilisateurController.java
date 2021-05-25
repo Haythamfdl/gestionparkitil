@@ -48,7 +48,7 @@ public class UtilisateurController {
 
     @GetMapping("/utilisateurs/login/{email}/{pass}")
     public Utilisateur login(@PathVariable String email, @PathVariable String pass) {
-        return utilisateurRepo.findUtilisateurByEmailAndPassAndIsdeleted(email, pass, false);
+        return accountService.getUser(email,pass);
     }
 
     @PostMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
