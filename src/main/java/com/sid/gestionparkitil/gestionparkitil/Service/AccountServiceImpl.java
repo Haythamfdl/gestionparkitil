@@ -21,6 +21,7 @@ public class AccountServiceImpl implements AccountService {
     public Utilisateur addNewUser(Utilisateur appUser) {
         String pw=appUser.getPass();
         appUser.setPass(passwordEncoder.encode(pw));
+        System.out.println(appUser);
         return appUserRepo.save(appUser);
     }
 
@@ -32,8 +33,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public Utilisateur getUser(String email, String pass) {
-        System.out.println(email);
-        System.out.println(passwordEncoder.encode(pass));
         return appUserRepo.findUtilisateurByEmailAndPassAndIsdeleted(email, passwordEncoder.encode(pass), false);
     }
 }

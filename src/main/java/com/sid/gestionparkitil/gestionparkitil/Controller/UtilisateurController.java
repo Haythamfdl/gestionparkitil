@@ -24,6 +24,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class UtilisateurController {
     private UtilisateurRepo utilisateurRepo;
     private Utilisateur utilisateur = new Utilisateur();
@@ -52,7 +53,7 @@ public class UtilisateurController {
     }
 
     @PostMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addAgent(@RequestBody UtilisateurDto utilisateurdto) {
+    public void addUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
         accountService.addNewUser(FromDtoToEntity.attribut(utilisateurdto, utilisateur));
     }
 

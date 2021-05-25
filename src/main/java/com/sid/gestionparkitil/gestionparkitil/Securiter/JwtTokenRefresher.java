@@ -41,9 +41,10 @@ public class JwtTokenRefresher {
                         .withIssuer(request.getRequestURL().toString())
                         .sign(algorithm);
                 Map<String,String> idToken =new HashMap<>();
-                idToken.put("access-token",jwtAccessToken);
-                idToken.put("refresh-token",jwt);
+                idToken.put("accesstoken",jwtAccessToken);
+                idToken.put("refreshtoken",jwt);
                 response.setContentType("application/json");
+                System.out.println("Refresh executed");
                 new ObjectMapper().writeValue(response.getOutputStream(),idToken);
             }
             catch (Exception e){
