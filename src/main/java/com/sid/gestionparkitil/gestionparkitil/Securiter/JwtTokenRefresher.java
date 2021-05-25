@@ -24,34 +24,32 @@ public class JwtTokenRefresher {
         this.accountService = accountService;
     }
 
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception{
-        String authorisationToken =request.getHeader(JWTUtil.AUTH_HEADER);
-        if(authorisationToken!=null && authorisationToken.startsWith(JWTUtil.PREFIX)){
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String authorisationToken = request.getHeader(JWTUtil.AUTH_HEADER);
+        if (authorisationToken != null && authorisationToken.startsWith(JWTUtil.PREFIX)) {
             try {
-                String jwt=authorisationToken.substring(JWTUtil.PREFIX.length());
-                Algorithm algorithm =Algorithm.HMAC256(JWTUtil.SECRET);
-                JWTVerifier jwtVerifier= JWT.require(algorithm).build();
+                String jwt = authorisationToken.substring(JWTUtil.PREFIX.length());
+                Algorithm algorithm = Algorithm.HMAC256(JWTUtil.SECRET);
+                JWTVerifier jwtVerifier = JWT.require(algorithm).build();
                 DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
                 String username = decodedJWT.getSubject();
                 System.out.println(username);
                 Utilisateur appUser = accountService.loadUserByUsername(username);
                 String jwtAccessToken = JWT.create()
                         .withSubject(appUser.getEmail())
-                        .withExpiresAt(new Date(System.currentTimeMillis()+JWTUtil.EXPIRE_ACCESS_TOKEN))
+                        .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_ACCESS_TOKEN))
                         .withIssuer(request.getRequestURL().toString())
                         .sign(algorithm);
-                Map<String,String> idToken =new HashMap<>();
-                idToken.put("accesstoken",jwtAccessToken);
-                idToken.put("refreshtoken",jwt);
+                Map<String, String> idToken = new HashMap<>();
+                idToken.put("accesstoken", jwtAccessToken);
+                idToken.put("refreshtoken", jwt);
                 response.setContentType("application/json");
                 System.out.println("Refresh executed");
-                new ObjectMapper().writeValue(response.getOutputStream(),idToken);
-            }
-            catch (Exception e){
+                new ObjectMapper().writeValue(response.getOutputStream(), idToken);
+            } catch (Exception e) {
                 throw e;
             }
-        }
-        else{
+        } else {
             throw new RuntimeException("Refresh Token Required!!!");
         }
     }

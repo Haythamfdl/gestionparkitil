@@ -2,7 +2,6 @@ package com.sid.gestionparkitil.gestionparkitil.Service;
 
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,8 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Utilisateur appUser= accountService.loadUserByUsername(username);
-        Collection<GrantedAuthority> authorities =new ArrayList<>();
-        return new User(appUser.getEmail(),appUser.getPass(),authorities);
+        Utilisateur appUser = accountService.loadUserByUsername(username);
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        return new User(appUser.getEmail(), appUser.getPass(), authorities);
     }
 }

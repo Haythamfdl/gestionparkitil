@@ -13,13 +13,14 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     private UtilisateurRepo appUserRepo;
     private PasswordEncoder passwordEncoder;
+
     public AccountServiceImpl(UtilisateurRepo appUserRepo, PasswordEncoder passwordEncoder) {
         this.appUserRepo = appUserRepo;
         this.passwordEncoder = passwordEncoder;
     }
 
     public Utilisateur addNewUser(Utilisateur appUser) {
-        String pw=appUser.getPass();
+        String pw = appUser.getPass();
         appUser.setPass(passwordEncoder.encode(pw));
         System.out.println(appUser);
         return appUserRepo.save(appUser);
@@ -28,6 +29,7 @@ public class AccountServiceImpl implements AccountService {
     public Utilisateur loadUserByUsername(String email) {
         return appUserRepo.findUtilisateurByEmailAndIsdeleted(email, false);
     }
+
     public List<Utilisateur> listUsers() {
         return appUserRepo.findAll();
     }
