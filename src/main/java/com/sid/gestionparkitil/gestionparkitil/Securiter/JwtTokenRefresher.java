@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class JwtTokenRefresher {
@@ -29,22 +29,21 @@ public class JwtTokenRefresher {
         if (authorisationToken != null && authorisationToken.startsWith(JWTUtil.PREFIX)) {
             try {
                 String jwt = authorisationToken.substring(JWTUtil.PREFIX.length());
-                Algorithm algorithm = Algorithm.HMAC256(JWTUtil.SECRET);
-                JWTVerifier jwtVerifier = JWT.require(algorithm).build();
+                Algorithm algo1 = Algorithm.HMAC256(JWTUtil.SECRET);
+                JWTVerifier jwtVerifier = JWT.require(algo1).build();
                 DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
-                String username = decodedJWT.getSubject();
-                System.out.println(username);
-                Utilisateur appUser = accountService.loadUserByUsername(username);
+                String email = decodedJWT.getSubject();
+                Utilisateur appUser = accountService.loadUserByUsername(email);
                 String jwtAccessToken = JWT.create()
                         .withSubject(appUser.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_ACCESS_TOKEN))
                         .withIssuer(request.getRequestURL().toString())
-                        .sign(algorithm);
+                        .sign(algo1);
                 String jwtRefreshToken = JWT.create()
                         .withSubject(appUser.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_REFRESH_TOKEN))
                         .withIssuer(request.getRequestURL().toString())
-                        .sign(algorithm);
+                        .sign(algo1);
                 Map<String, String> idToken = new HashMap<>();
                 idToken.put("accesstoken", jwtAccessToken);
                 idToken.put("refreshtoken", jwtRefreshToken);
