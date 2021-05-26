@@ -40,9 +40,14 @@ public class JwtTokenRefresher {
                         .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_ACCESS_TOKEN))
                         .withIssuer(request.getRequestURL().toString())
                         .sign(algorithm);
+                String jwtRefreshToken = JWT.create()
+                        .withSubject(appUser.getEmail())
+                        .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_REFRESH_TOKEN))
+                        .withIssuer(request.getRequestURL().toString())
+                        .sign(algorithm);
                 Map<String, String> idToken = new HashMap<>();
                 idToken.put("accesstoken", jwtAccessToken);
-                idToken.put("refreshtoken", jwt);
+                idToken.put("refreshtoken", jwtRefreshToken);
                 response.setContentType("application/json");
                 System.out.println("Refresh executed");
                 new ObjectMapper().writeValue(response.getOutputStream(), idToken);

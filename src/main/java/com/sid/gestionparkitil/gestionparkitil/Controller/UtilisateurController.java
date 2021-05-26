@@ -56,4 +56,8 @@ public class UtilisateurController {
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
         jwtTokenRefresher.refreshToken(request, response);
     }
+
+    @GetMapping(path = "/testToken")
+    public void testToken() throws Exception {
+    }
 }
