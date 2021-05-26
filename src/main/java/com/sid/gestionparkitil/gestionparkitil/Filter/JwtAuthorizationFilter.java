@@ -1,4 +1,4 @@
-package com.sid.gestionparkitil.gestionparkitil.filters;
+package com.sid.gestionparkitil.gestionparkitil.Filter;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

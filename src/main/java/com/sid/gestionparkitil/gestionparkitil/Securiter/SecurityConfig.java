@@ -1,8 +1,8 @@
 package com.sid.gestionparkitil.gestionparkitil.Securiter;
 
 import com.sid.gestionparkitil.gestionparkitil.Service.UserDetailsServiceImpl;
-import com.sid.gestionparkitil.gestionparkitil.filters.JwtAuthentificationFilter;
-import com.sid.gestionparkitil.gestionparkitil.filters.JwtAuthorizationFilter;
+import com.sid.gestionparkitil.gestionparkitil.Filter.JwtAuthentificationFilter;
+import com.sid.gestionparkitil.gestionparkitil.Filter.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
         http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
-        http.authorizeRequests().antMatchers("/refreshToken/**", "/utilisateurs/**", "/login/**").permitAll();
+        http.authorizeRequests().antMatchers("/refreshToken/**", "/utilisateurs/**", "/login/**","/messages/count/**", "/utilisateurs/id/").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         //http.formLogin();
         http.addFilter(new JwtAuthentificationFilter(authenticationManagerBean()));
