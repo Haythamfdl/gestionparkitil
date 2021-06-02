@@ -15,8 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class EquipementController {
 
-    private EquipementRepo equipementRepo;
-    private Equipement equipement = new Equipement();
+    private final EquipementRepo equipementRepo;
 
     public EquipementController(EquipementRepo equipementRepo) {
         this.equipementRepo = equipementRepo;
@@ -41,11 +40,13 @@ public class EquipementController {
 
     @PostMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addEquipement(@RequestBody EquipementDto equipementdto) {
+        Equipement equipement = new Equipement();
         equipementRepo.save(FromDtoToEntity.attribut(equipementdto, equipement));
     }
 
     @PutMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateEquipement(@RequestBody EquipementDto equipementdto) {
+        Equipement equipement = new Equipement();
         equipementRepo.save(FromDtoToEntity.attribut(equipementdto, equipement));
     }
 }

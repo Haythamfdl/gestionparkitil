@@ -14,8 +14,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*")
 public class ProblemeController {
-    private ProblemeRepo problemeRepo;
-    private Probleme probleme = new Probleme();
+    private final ProblemeRepo problemeRepo;
 
     public ProblemeController(ProblemeRepo problemeRepo) {
         this.problemeRepo = problemeRepo;
@@ -45,11 +44,13 @@ public class ProblemeController {
 
     @PostMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addProbleme(@RequestBody ProblemeDto problemedto) {
+        Probleme probleme = new Probleme();
         problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
     }
 
     @PutMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateProbleme(@RequestBody ProblemeDto problemedto) {
+        Probleme probleme = new Probleme();
         problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
     }
 }

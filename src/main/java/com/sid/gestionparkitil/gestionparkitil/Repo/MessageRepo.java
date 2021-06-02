@@ -9,7 +9,7 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface MessageRepo extends JpaRepository<Message, Long> {
-    public List<Message> findAllByRecepteurAndIsdeletedOrderByDateenvoieDesc(Utilisateur recepteur, Boolean isdeleted);
+    List<Message> findAllByRecepteurAndIsdeletedOrderByDateenvoieDesc(Utilisateur recepteur, Boolean isdeleted);
 
-    public List<Message> findAllByRecepteurAndOuvertAndIsdeletedOrderByDateenvoieDesc(Utilisateur recepteur, Boolean ouvert, Boolean isdeleted);
+    List<Message> findAllByRecepteurAndOuvertAndIsdeletedOrderByDateenvoieDesc(Utilisateur recepteur, Boolean ouvert, Boolean isdeleted);
 }

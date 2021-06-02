@@ -16,10 +16,10 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*")
 public class UtilisateurController {
-    private UtilisateurRepo utilisateurRepo;
-    private Utilisateur utilisateur = new Utilisateur();
-    private AccountService accountService;
-    private JwtTokenRefresher jwtTokenRefresher;
+    private final UtilisateurRepo utilisateurRepo;
+    private final Utilisateur utilisateur = new Utilisateur();
+    private final AccountService accountService;
+    private final JwtTokenRefresher jwtTokenRefresher;
 
     public UtilisateurController(UtilisateurRepo utilisateurRepo, AccountService accountService, JwtTokenRefresher jwtTokenRefresher) {
         this.utilisateurRepo = utilisateurRepo;
@@ -56,6 +56,7 @@ public class UtilisateurController {
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
         jwtTokenRefresher.refreshToken(request, response);
     }
+
     //Tester si le access Token est valable
     @GetMapping(path = "/testToken")
     public void testToken() throws Exception {

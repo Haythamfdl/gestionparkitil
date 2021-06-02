@@ -10,9 +10,9 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface EquipementRepo extends JpaRepository<Equipement, Long> {
-    public List<Equipement> findAllByIsdeleted(Boolean isdeleted);
+    List<Equipement> findAllByIsdeleted(Boolean isdeleted);
 
-    public List<Equipement> findAllByAgentAndIsdeleted(Agent agent, Boolean isdeleted);
+    List<Equipement> findAllByAgentAndIsdeleted(Agent agent, Boolean isdeleted);
 
-    public Equipement findByNumero(String numero);
+    Equipement findByNumero(String numero);
 }

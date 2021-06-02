@@ -14,8 +14,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*")
 public class MessageController {
-    private MessageRepo messageRepo;
-    private Message message = new Message();
+    private final MessageRepo messageRepo;
 
     public MessageController(MessageRepo messageRepo) {
         this.messageRepo = messageRepo;
@@ -49,11 +48,13 @@ public class MessageController {
 
     @PostMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addMessage(@RequestBody MessageDto messagedto) {
+        Message message = new Message();
         messageRepo.save(FromDtoToEntity.attribut(messagedto, message));
     }
 
     @PutMapping(value = "/messages", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateMessage(@RequestBody MessageDto messagedto) {
+        Message message = new Message();
         messageRepo.save(FromDtoToEntity.attribut(messagedto, message));
     }
 }

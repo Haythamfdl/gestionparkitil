@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class JwtTokenRefresher {
 
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public JwtTokenRefresher(AccountService accountService) {
         this.accountService = accountService;

@@ -15,8 +15,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*")
 public class SolutionController {
-    private SolutionRepo solutionRepo;
-    private Solution solution = new Solution();
+    private final SolutionRepo solutionRepo;
 
     public SolutionController(SolutionRepo solutionRepo) {
         this.solutionRepo = solutionRepo;
@@ -43,11 +42,13 @@ public class SolutionController {
 
     @PostMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addSolution(@RequestBody SolutionDto solutiondto) {
+        Solution solution = new Solution();
         solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));
     }
 
     @PutMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateSolution(@RequestBody SolutionDto solutiondto) {
+        Solution solution = new Solution();
         solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));
     }
 }

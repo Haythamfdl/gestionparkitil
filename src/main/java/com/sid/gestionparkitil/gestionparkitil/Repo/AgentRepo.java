@@ -9,8 +9,8 @@ import java.util.List;
 @RepositoryRestResource
 public interface AgentRepo extends JpaRepository<Agent, Long> {
 
-    public List<Agent> findAllByIsdeleted(Boolean isdeleted);
+    List<Agent> findAllByIsdeleted(Boolean isdeleted);
 
-    public Agent findByNumero(String numero);
+    Agent findByNumero(String numero);
 
 }

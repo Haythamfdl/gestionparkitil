@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtAuthentificationFilter extends UsernamePasswordAuthenticationFilter {
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public JwtAuthentificationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;

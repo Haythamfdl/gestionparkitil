@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class PermissionController {
-    private PermissionRepo permissionRepo;
+    private final PermissionRepo permissionRepo;
 
     public PermissionController(PermissionRepo permissionRepo) {
         this.permissionRepo = permissionRepo;

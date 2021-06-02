@@ -13,8 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class AgentController {
 
-    private AgentRepo agentRepo;
-    private Agent agent = new Agent();
+    private final AgentRepo agentRepo;
 
     public AgentController(AgentRepo agentRepo) {
         this.agentRepo = agentRepo;
@@ -32,11 +31,13 @@ public class AgentController {
 
     @PostMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addAgent(@RequestBody AgentDto agentdto) {
+        Agent agent = new Agent();
         agentRepo.save(FromDtoToEntity.attribut(agentdto, agent));
     }
 
     @PutMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateAgent(@RequestBody AgentDto agentdto) {
+        Agent agent = new Agent();
         agentRepo.save(FromDtoToEntity.attribut(agentdto, agent));
     }
 }
