@@ -17,7 +17,6 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class UtilisateurController {
     private final UtilisateurRepo utilisateurRepo;
-    private final Utilisateur utilisateur = new Utilisateur();
     private final AccountService accountService;
     private final JwtTokenRefresher jwtTokenRefresher;
 
@@ -44,11 +43,13 @@ public class UtilisateurController {
 
     @PostMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
+        Utilisateur utilisateur = new Utilisateur();
         accountService.addNewUser(FromDtoToEntity.attribut(utilisateurdto, utilisateur));
     }
 
     @PutMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
+        Utilisateur utilisateur = new Utilisateur();
         accountService.addNewUser(FromDtoToEntity.attribut(utilisateurdto, utilisateur));
     }
 
