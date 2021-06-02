@@ -25,7 +25,7 @@ public class GestionparkitilApplication {
     @Bean
     CommandLineRunner start(AccountService accountService) {
         return args -> {
-            //accountService.addNewUser(new Utilisateur(null,"user1","user1@gmail.com","passpass","0533025489",null,null,false));
+            //accountService.addNewUser(new Utilisateur(0,"admin","amdin@gmail.com","passpass","0533025489",null,null,false));
         };
     }
 }

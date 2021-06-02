@@ -56,7 +56,7 @@ public class UtilisateurController {
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
         jwtTokenRefresher.refreshToken(request, response);
     }
-
+    //Tester si le access Token est valable
     @GetMapping(path = "/testToken")
     public void testToken() throws Exception {
     }
