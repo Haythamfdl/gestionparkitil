@@ -7,10 +7,12 @@ import com.sid.gestionparkitil.gestionparkitil.Securiter.JwtTokenRefresher;
 import com.sid.gestionparkitil.gestionparkitil.Service.AccountService;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -42,20 +44,22 @@ public class UtilisateurController {
     }
 
     @PostMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJU','MDU')")
     public void addUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
         Utilisateur utilisateur = new Utilisateur();
         accountService.addNewUser(FromDtoToEntity.attribut(utilisateurdto, utilisateur));
     }
 
     @PutMapping(value = "/utilisateurs", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJU','MDU')")
     public void updateUtilisateur(@RequestBody UtilisateurDto utilisateurdto) {
         Utilisateur utilisateur = new Utilisateur();
         accountService.addNewUser(FromDtoToEntity.attribut(utilisateurdto, utilisateur));
     }
 
     @GetMapping(path = "/refreshToken")
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        jwtTokenRefresher.refreshToken(request, response);
+    public Map<String, String> refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return jwtTokenRefresher.refreshToken(request, response);
     }
 
     //Tester si le access Token est valable

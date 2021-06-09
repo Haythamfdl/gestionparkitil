@@ -5,6 +5,7 @@ import com.sid.gestionparkitil.gestionparkitil.Model.Agent;
 import com.sid.gestionparkitil.gestionparkitil.Repo.AgentRepo;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,12 +31,14 @@ public class AgentController {
     }
 
     @PostMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJA','MDA','SPA')")
     public void addAgent(@RequestBody AgentDto agentdto) {
         Agent agent = new Agent();
         agentRepo.save(FromDtoToEntity.attribut(agentdto, agent));
     }
 
     @PutMapping(value = "/agents", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJA','MDA','SPA')")
     public void updateAgent(@RequestBody AgentDto agentdto) {
         Agent agent = new Agent();
         agentRepo.save(FromDtoToEntity.attribut(agentdto, agent));

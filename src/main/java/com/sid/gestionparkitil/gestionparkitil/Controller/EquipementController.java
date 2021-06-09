@@ -7,6 +7,8 @@ import com.sid.gestionparkitil.gestionparkitil.Model.Equipement;
 import com.sid.gestionparkitil.gestionparkitil.Repo.EquipementRepo;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,12 +41,14 @@ public class EquipementController {
     }
 
     @PostMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJE','MDE','SPE','AFE')")
     public void addEquipement(@RequestBody EquipementDto equipementdto) {
         Equipement equipement = new Equipement();
         equipementRepo.save(FromDtoToEntity.attribut(equipementdto, equipement));
     }
 
     @PutMapping(value = "/equipements", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJE','MDE','SPE','AFE')")
     public void updateEquipement(@RequestBody EquipementDto equipementdto) {
         Equipement equipement = new Equipement();
         equipementRepo.save(FromDtoToEntity.attribut(equipementdto, equipement));

@@ -5,6 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sid.gestionparkitil.gestionparkitil.Model.Permission;
 import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Service.AccountService;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class JwtTokenRefresher {
@@ -24,7 +26,7 @@ public class JwtTokenRefresher {
         this.accountService = accountService;
     }
 
-    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String, String> refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String authorisationToken = request.getHeader(JWTUtil.AUTH_HEADER);
         if (authorisationToken != null && authorisationToken.startsWith(JWTUtil.PREFIX)) {
             try {
@@ -38,6 +40,7 @@ public class JwtTokenRefresher {
                         .withSubject(appUser.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + JWTUtil.EXPIRE_ACCESS_TOKEN))
                         .withIssuer(request.getRequestURL().toString())
+                        .withClaim("permissions", appUser.getPermissions().stream().map(p -> p.getCode()).collect(Collectors.toList()))
                         .sign(algo1);
                 String jwtRefreshToken = JWT.create()
                         .withSubject(appUser.getEmail())
@@ -49,7 +52,8 @@ public class JwtTokenRefresher {
                 idToken.put("refreshtoken", jwtRefreshToken);
                 response.setContentType("application/json");
                 System.out.println("Refresh executed");
-                new ObjectMapper().writeValue(response.getOutputStream(), idToken);
+                //new ObjectMapper().writeValue(response.getOutputStream(), idToken);
+                return idToken;
             } catch (Exception e) {
                 throw e;
             }

@@ -7,6 +7,7 @@ import com.sid.gestionparkitil.gestionparkitil.Model.Utilisateur;
 import com.sid.gestionparkitil.gestionparkitil.Repo.SolutionRepo;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,12 +42,14 @@ public class SolutionController {
     }
 
     @PostMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJS','MDS','SPS')")
     public void addSolution(@RequestBody SolutionDto solutiondto) {
         Solution solution = new Solution();
         solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));
     }
 
     @PutMapping(value = "/solutions", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJS','MDS','SPS')")
     public void updateSolution(@RequestBody SolutionDto solutiondto) {
         Solution solution = new Solution();
         solutionRepo.save(FromDtoToEntity.attribut(solutiondto, solution));

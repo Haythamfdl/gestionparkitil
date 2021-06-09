@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -23,11 +24,11 @@ public class Utilisateur {
     private String pass;
     private String tel;
     private Date datemodifpass;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "permission_accorde",
             joinColumns = @JoinColumn(name = "iduser"),
             inverseJoinColumns = @JoinColumn(name = "idpermission"))
-    private Set<Permission> permissions;
+    private Collection<Permission> permissions;
     private Boolean isdeleted;
 }

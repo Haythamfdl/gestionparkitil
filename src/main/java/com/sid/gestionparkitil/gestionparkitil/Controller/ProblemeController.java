@@ -6,6 +6,7 @@ import com.sid.gestionparkitil.gestionparkitil.Model.Probleme;
 import com.sid.gestionparkitil.gestionparkitil.Repo.ProblemeRepo;
 import com.sid.gestionparkitil.gestionparkitil.Util.FromDtoToEntity;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,12 +44,14 @@ public class ProblemeController {
     }
 
     @PostMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJP','MDP','SPP')")
     public void addProbleme(@RequestBody ProblemeDto problemedto) {
         Probleme probleme = new Probleme();
         problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
     }
 
     @PutMapping(value = "/problemes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyAuthority('AJP','MDP','SPP')")
     public void updateProbleme(@RequestBody ProblemeDto problemedto) {
         Probleme probleme = new Probleme();
         problemeRepo.save(FromDtoToEntity.attribut(problemedto, probleme));
